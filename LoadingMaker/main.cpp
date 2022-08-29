@@ -4,8 +4,24 @@
 #include <vector>
 
 #include "cmdline.h"
-
+#ifdef _WIN32
 #include <Windows.h>
+#else
+bool SetThreadAffinityMask(std::thread::native_handle_type handle, uint64_t mask)
+{
+	int result = 0;
+	cpu_set_t cpuset;
+	CPU_ZERO(&cpuset);
+	CPU_SET(cpuid, &cpuset);
+	result = pthread_setaffinity_np(
+		thr.native_handle(),
+		sizeof(cpu_set_t),
+		&cpuset);
+	return result == 0;
+}
+#endif // __WIN32
+
+
 using namespace std;
 
 void loading(unsigned per,unsigned core)
@@ -37,12 +53,11 @@ int main(int argc, char* argv[])
 	auto usage = a.get<int>("usage");
 	auto core_num = a.get<int>("cores");
 
-
 	std::vector<thread> worker;
 	for (unsigned i =0;i< core_num;++i)
 	{
 		uint64_t mask = 0x1;
-		std::thread t=thread(loading, (usage/4)*3, i);
+		std::thread t=thread(loading, usage, i);
 		SetThreadAffinityMask(t.native_handle(), mask << i);
 		worker.push_back(std::move(t));
 	}
@@ -51,6 +66,5 @@ int main(int argc, char* argv[])
 	{
 		v.join();
 	}
-
 	return 0;
 }
