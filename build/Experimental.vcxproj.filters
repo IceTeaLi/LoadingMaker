@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="F:\Project\CrossPlatform\LoadingMaker\build\CMakeFiles\1c3fecdc9bfc01c7a5281baa9b9fff53\Experimental.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="F:\Project\CrossPlatform\LoadingMaker\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="F:\Project\CrossPlatform\LoadingMaker\build\CMakeFiles\Experimental" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{A0B0C97A-4B52-3DCA-9583-F1FC51D06D8A}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
